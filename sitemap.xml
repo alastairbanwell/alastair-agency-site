@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://alastairbanwell.com/</loc>
+    <loc>https://www.alastairbanwell.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/work/</loc>
+    <loc>https://www.alastairbanwell.com/work/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/process/</loc>
+    <loc>https://www.alastairbanwell.com/process/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/pricing/</loc>
+    <loc>https://www.alastairbanwell.com/pricing/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/blog/</loc>
+    <loc>https://www.alastairbanwell.com/blog/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/blog/what-actually-converts/</loc>
+    <loc>https://www.alastairbanwell.com/blog/what-actually-converts/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/privacy/</loc>
+    <loc>https://www.alastairbanwell.com/privacy/</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://alastairbanwell.com/terms/</loc>
+    <loc>https://www.alastairbanwell.com/terms/</loc>
     <priority>0.2</priority>
   </url>
 </urlset>
