@@ -1896,10 +1896,11 @@
     if (row) row.classList.toggle('open');
   }
   function openBookingModal() {
-    if (window.__gcalTriggerBtn) {
+    var isMobile = window.innerWidth <= 860;
+    if (!isMobile && window.__gcalTriggerBtn) {
       window.__gcalTriggerBtn.click();
     } else {
-      window.open('https://calendar.app.google/QaLmKhFfuy2uepkw5', '_blank');
+      window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ0kla4ZO3uk6fs4sW6GkNcjuTqTyyOzmBTzuQ-GY3KOAH6-7Punj-BKZ5S3oEN5h3kmWybwyvUE?gv=true', '_blank');
     }
   }
 </script>
