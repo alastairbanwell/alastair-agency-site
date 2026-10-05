@@ -1,0 +1,43 @@
+# Alastair Banwell
+
+> Independent web designer and developer. I build websites for small, owner-run
+> businesses, mostly sports coaches, trades and local services. One person, not an
+> agency: the person you speak to is the person who builds the site.
+
+Based in the Western Cape, South Africa, working remotely with clients worldwide,
+currently in the United Kingdom, the United States and South Africa.
+
+A full build is a one-off fee, not a subscription. The client owns the site and the
+domain. Details on the Pricing page.
+
+## What I do
+
+- Websites for small businesses, built by hand rather than assembled from a template
+- Sports coaches and clubs, home services and trades, local retail
+- Honest copy and real photography. No invented testimonials, review counts or
+  statistics, which is a fixed rule rather than a preference
+
+## Pages
+
+- [Home](https://www.alastairbanwell.com/): what I do and who I do it for
+- [Work](https://www.alastairbanwell.com/work/): real projects, with video walkthroughs
+- [Process](https://www.alastairbanwell.com/process/): how a build actually runs, start to finish
+- [Pricing](https://www.alastairbanwell.com/pricing/): what a small business website costs and why
+- [Blog](https://www.alastairbanwell.com/blog/): notes on what makes a small business website work
+
+## Writing
+
+Each post answers one specific question, in plain language, from real client work.
+
+- [Six Small Things That Quietly Cost You Enquiries](https://www.alastairbanwell.com/blog/small-things-that-cost-you-enquiries/): six mechanical faults found on real small business sites, including duplicate email addresses, broken mailto links and template demo content left live. Each with how to check it yourself.
+- [Why I Won't Put Fake Numbers On Your Website](https://www.alastairbanwell.com/blog/fake-numbers-on-your-website/): why padded follower counts, invented testimonials and made-up statistics cost more than they gain, and what to do when you genuinely have very little to show.
+- [Why People Book A Call And Then Don't Turn Up](https://www.alastairbanwell.com/blog/why-people-miss-booked-calls/): the mechanical reasons booked calls get missed, and the five minute fix.
+- [Your Own Website Vs Being Listed On Someone Else's](https://www.alastairbanwell.com/blog/your-own-website-vs-being-listed/): when a directory, marketplace or club listing is enough, and when you need your own site.
+- [How Much Should A Small Business Website Actually Cost](https://www.alastairbanwell.com/blog/how-much-a-website-should-cost/): what drives the price of a small business website, and what you are paying for at each level.
+- [How A Brand New Website Actually Gets Found By Google](https://www.alastairbanwell.com/blog/how-a-new-site-gets-found/): indexing, sitemaps, structured data and realistic timescales for a site with no history.
+- [What Actually Makes A Small Business Website Convert](https://www.alastairbanwell.com/blog/what-actually-converts/): what turns a visitor into an enquiry, drawn from real builds.
+
+## Contact
+
+Email: hello@alastairbanwell.com
+Website: https://www.alastairbanwell.com
