@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal for Advantage Tennis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F5F1; --bg-alt:#EFEBE3; --ink:#15130F; --obsidian:#0A0A0A;
+  --white:#FFFFFF; --line:#DAD5CB; --soft:#5A554D; --faint:#8A857C;
+  --good:#1F6F43; --warn:#9A6212;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;padding:28px 22px 70px}
+.w{max-width:900px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.14;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.7rem)}
+h2{font-size:clamp(1.3rem,2.4vw,1.72rem);margin-bottom:10px}
+h3{font-size:1.06rem;font-weight:700}
+p{margin-top:10px}
+a{color:inherit}
+
+header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:30px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.who{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+header .meta{text-align:right;font-size:.85rem;color:var(--soft)}
+
+section{margin-bottom:40px}
+.lead{font-size:1.06rem;color:var(--soft);max-width:66ch}
+.kicker{display:block;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:8px}
+
+.box{background:var(--white);border:1px solid var(--line);padding:22px 24px;margin-top:18px}
+.box.dark{background:var(--obsidian);color:#fff;border-color:var(--obsidian)}
+.box.dark .lab{color:#9A958C}
+.box.flag{background:#FFF8E8;border-color:#E8D5A8}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:200px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+@media(max-width:620px){.row{grid-template-columns:1fr;gap:2px}}
+.lab{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+
+ul{margin:10px 0 0 0;padding-left:0;list-style:none}
+ul li{position:relative;padding-left:18px;margin-top:7px}
+ul li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--ink)}
+ul.tick li::before{background:var(--good)}
+ul.cross li::before{background:var(--warn)}
+
+.price{font-family:var(--serif);font-size:2.1rem;font-weight:700;line-height:1}
+.price small{font-family:var(--sans);font-size:.8rem;font-weight:600;color:var(--faint);letter-spacing:.06em}
+.was{color:var(--faint);text-decoration:line-through;font-size:1.05rem;font-family:var(--sans);font-weight:500;margin-left:10px}
+
+.svc{border:1px solid var(--line);background:var(--white);padding:22px 24px;margin-top:16px}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:680px){.svc-grid{grid-template-columns:1fr;gap:14px}}
+.svc h4{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:4px}
+.svc h4.y{color:var(--good)}
+.svc h4.n{color:var(--warn)}
+
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.95rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);
+  border-bottom:1px solid var(--ink)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--bg-alt);font-weight:700}
+
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px}
+@media(max-width:620px){.sign{grid-template-columns:1fr}}
+.sign div{border-top:1px solid var(--ink);padding-top:9px;font-size:.8rem;color:var(--faint)}
+.sigline{height:46px}
+
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:16px;font-size:.82rem;color:var(--faint)}
+
+/* ---------- fillable fields ---------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  background:var(--ink);color:#fff;padding:11px 14px;margin:0 0 24px;
+}
+.bar button{
+  font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:9px 15px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer;
+  transition:background-color .2s ease,color .2s ease;
+}
+.bar button:hover{background:#fff;color:var(--ink)}
+.bar button.pri{background:#fff;color:var(--ink);border-color:#fff}
+.bar button.pri:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.bar .st{margin-left:auto;font-size:.76rem;color:rgba(255,255,255,.65)}
+
+textarea.f,input.f{
+  font-family:inherit;font-size:1rem;line-height:1.55;color:var(--ink);
+  width:100%;background:#FFFEFB;border:1px solid var(--line);border-bottom:2px solid var(--line);
+  padding:9px 11px;resize:none;overflow:hidden;display:block;
+  transition:border-color .2s ease,background-color .2s ease;
+}
+textarea.f:focus,input.f:focus{outline:none;border-color:var(--ink);background:#fff}
+textarea.f::placeholder,input.f::placeholder{color:#B8B2A7}
+.ansbox{margin:10px 0 0 40px}
+.ansbox.flush{margin-left:0}
+
+@media print{
+  .bar{display:none}
+  textarea.f,input.f{border:0;border-bottom:1px solid #999;background:transparent;padding:2px 0;
+    font-size:11pt;color:#000}
+}
+
+@media print{body{padding:0;background:#fff}.box.dark{background:#fff;color:#000;border:1px solid #000}}
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="bar">
+  <button id="pdf" class="pri">Print or save as PDF</button>
+  <button id="clear">Clear</button>
+  <span class="st" id="st">Saves as you type</span>
+</div>
+
+<header>
+  <div>
+    <span class="who">Alastair Banwell</span>
+    <h1>Proposal &amp; Agreement</h1>
+  </div>
+  <div class="meta">
+    Prepared for <b>Sebastian Holowkiewicz</b><br>
+    Advantage Tennis, Stillington, York<br>
+    6 October 2026
+  </div>
+</header>
+
+<section>
+  <p class="lead">Following our call. This sets out exactly what I am building, what it costs, what you own at the end, and what happens afterwards. Everything optional is clearly marked as optional.</p>
+</section>
+
+<section>
+  <span class="kicker">Part one</span>
+  <h2>The website</h2>
+  <p class="lead">A custom built site for Advantage Tennis. Not a template, not a page builder subscription. Designed and written around how people actually find and book a coach.</p>
+
+  <div class="rows">
+    <div class="row"><div class="lab">Price</div><div><span class="price">&pound;500</span> <span class="was">&pound;800 standard</span></div></div>
+    <div class="row"><div class="lab">Payment</div><div><b>&pound;200</b> deposit and <b>&pound;300</b> on completion. As discussed, I will start as soon as your answers come back rather than waiting for the deposit to land, so nothing is held up by a bank transfer. The deposit is due during the build and the balance before the site goes live.</div></div>
+    <div class="row"><div class="lab">Ownership</div><div>Yours outright from the day it launches. The code, the content and the domain are all in your name. You are not renting anything from me.</div></div>
+    <div class="row"><div class="lab">Hosting</div><div><b>Included, at no cost, for as long as you want it.</b> There is no monthly fee and no subscription needed to keep the site online. This is not a trial rate that changes later.</div></div>
+    <div class="row"><div class="lab">Domain</div><div>Roughly &pound;10 to &pound;15 a year, paid by you directly to the registrar and registered in your name. I never hold your domain.</div></div>
+    <div class="row"><div class="lab">Timeline</div><div><b>Within 30 days</b> of your answers and photos coming back to me. That is a comfortable outer limit rather than a deadline, and in practice it is usually well before that. Nothing here is fixed, so if you need it sooner, or you would rather take longer getting the content together, just say.</div></div>
+  </div>
+
+  <div class="box">
+    <h3>What is included</h3>
+    <ul class="tick">
+      <li>Full custom design and build, written copy included</li>
+      <li>Built mobile first, because that is where almost all of your enquiries will come from</li>
+      <li>Your sessions, your coaching, your pricing, laid out so a parent understands them in seconds</li>
+      <li>Enquiry and booking routed wherever you want it to land</li>
+      <li>Basic on page search setup so you can be found for your own name and your area</li>
+      <li>Google Analytics connected so you can see what is actually happening</li>
+      <li>A proper handover, with everything in accounts that belong to you</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>What is not included at this price</h3>
+    <ul class="cross">
+      <li>Online payment processing or a full booking engine with card payments. If you want that, it is a separate piece of work and I will price it for you properly rather than absorbing it.</li>
+      <li>Ongoing marketing. That is part two below, and it is entirely optional.</li>
+      <li>Photography. I will use what you send me.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Changes after launch</h3>
+    <p>You said on the call you expect to want a change roughly every six months. That is exactly how this should work for a business your size.</p>
+    <p>Small changes, a new price, a new session time, swapping a photo, are quoted individually and will be small. You will always have the number before I start. There is no retainer required and no minimum.</p>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">Part two, optional</span>
+  <h2>Ongoing marketing</h2>
+  <p class="lead">You mentioned you probably do not want these right now. That is a completely reasonable call and the website works perfectly well without any of them. I am setting them out properly anyway so you know what exists, what each one actually does, and what happens if you leave it.</p>
+  <p class="lead" style="margin-top:12px"><b>Nothing below is required. The site is yours either way and I will not raise it again unless you do.</b></p>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Search &amp; SEO</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">Getting found by people who do not yet know your name.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    <div class="svc-grid">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li>Showing up for "tennis coach York", "tennis lessons near me" and similar</li>
+          <li>New local pages built each month targeting what people actually type</li>
+          <li>Technical fixes, page speed, and the markup that search engines and AI assistants read</li>
+          <li>Increasingly, this is also how ChatGPT and similar answer "who is a good tennis coach in York"</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>The site still works and still converts anyone who already has your name</li>
+          <li>But you will mostly be found by people who were already going to find you</li>
+          <li>Whoever does put the work in will take the "near me" searches</li>
+          <li><b>Honest caveat:</b> this is slow. Three to six months before it shows. If you want more bookings next month, this is the wrong lever.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Social media</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">Consistent posting, managed for you.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    <div class="svc-grid">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li>A real content calendar instead of posting when you remember</li>
+          <li>Posts built from your actual sessions, edited and scheduled</li>
+          <li>Comments and messages watched and replied to</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>You keep posting yourself, which costs nothing</li>
+          <li>The honest risk is simply that it goes quiet when you get busy coaching</li>
+          <li><b>Honest caveat:</b> for a coach working on his own, your own phone footage often performs better than anything managed. This is only worth paying for if you know you will not post otherwise.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Paid ads</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">The fastest way to fill empty slots.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    <div class="svc-grid">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li>Enquiries within days rather than months</li>
+          <li>Continuous testing of what message actually makes a parent click</li>
+          <li>Budget moved off what is not working, weekly</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>Growth comes from word of mouth and search, which is slower but free</li>
+          <li><b>Honest caveat:</b> the ad spend itself is on top of the fee and goes to the platform, not to me. And you only have so many hours in a week. Ads make sense when you have slots you cannot fill, not before.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Content &amp; site updates</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">Monthly blog posts, plus everything on the site kept current.</p></div>
+      <div style="text-align:right"><span class="price">&pound;300</span><small> / month</small><br><span class="was">&pound;375</span></div>
+    </div>
+    <div class="svc-grid">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li><b>A written blog post or new page every month</b>, on things parents actually search: how to pick a first racket, what age to start, what happens in a first lesson</li>
+          <li>Those posts are also what gets picked up by Google and by AI assistants answering questions about coaching in your area</li>
+          <li>Photo and copy swaps whenever you want them, no quoting, no waiting</li>
+          <li>New reviews and proof added as they come in</li>
+          <li>Timetable, prices and term dates kept current without you having to ask</li>
+          <li>Seasonal pushes live on time, holiday camps and summer programmes up before people start looking</li>
+          <li>Security, link and performance maintenance so nothing quietly breaks</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>You email me when something needs changing and I quote it, which stays small</li>
+          <li><b>Be honest with yourself about which you are.</b> If all you want is a price change twice a year, pay per change, it will cost you a fraction of this.</li>
+          <li>This only earns its money if you want the content side as well. And blog posts mostly pay off alongside the search work, so taking this without SEO is doing half the job.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:30px">If you ever did want more than one</h3>
+  <table>
+    <thead><tr><th>Combination</th><th class="n">Standard</th><th class="n">Your rate</th></tr></thead>
+    <tbody>
+      <tr><td>Any one service</td><td class="n">&pound;750</td><td class="n">&pound;650 / mo</td></tr>
+      <tr><td>Any two, 10% off</td><td class="n">&pound;1,500</td><td class="n">&pound;1,170 / mo</td></tr>
+      <tr><td>Any three, 20% off</td><td class="n">&pound;2,250</td><td class="n">&pound;1,560 / mo</td></tr>
+      <tr class="hl"><td>All four, flat bundle</td><td class="n">&pound;1,875</td><td class="n">&pound;1,600 / mo</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.88rem;color:var(--faint);margin-top:10px">No lock in. You can start, stop or change the combination month to month. Rates above are held for you for 60 days.</p>
+</section>
+
+<section>
+  <span class="kicker">Part three</span>
+  <h2>What happens next</h2>
+  <div class="rows">
+    <div class="row"><div class="lab">1. Questionnaire</div><div>I have sent a separate list of questions. The more of it you fill in, the less back and forth there is later.</div></div>
+    <div class="row"><div class="lab">2. Your material</div><div>Logo if you have one, photos, your current timetable and prices, and any social links.</div></div>
+    <div class="row"><div class="lab">3. Deposit</div><div>&pound;200. I will have started before this lands, so it is not a gate on the work. Payment details sent separately.</div></div>
+    <div class="row"><div class="lab">4. Build</div><div>I build it and send you a link to review. You tell me what to change.</div></div>
+    <div class="row"><div class="lab">5. Launch</div><div>&pound;300 balance, domain pointed, site live, everything handed to you in your own accounts.</div></div>
+  </div>
+
+  <div class="box flag">
+    <h3>A note on payment</h3>
+    <p>I will send bank details separately once you confirm. Please do not send anything before you have those details in writing from me.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Agreed</h2>
+  <p class="lead">Website build for Advantage Tennis at &pound;500, reduced from &pound;800, paid as a &pound;200 deposit and a &pound;300 balance on completion. Hosting included at no cost. Domain registered and paid by the client. Site owned outright by the client on launch. No ongoing fees and no retainer unless separately agreed in writing.</p>
+  <div class="sign">
+    <div style="border:0;padding:0">
+      <div class="ansbox flush"><input class="f" id="p_sig1" placeholder="Type your full name"></div>
+      <div class="ansbox flush" style="margin-top:10px"><input class="f" id="p_date1" placeholder="Date"></div>
+    </div>
+    <div style="border:0;padding:0">
+      <div class="ansbox flush"><input class="f" id="p_sig2" placeholder="Alastair Banwell"></div>
+      <div class="ansbox flush" style="margin-top:10px"><input class="f" id="p_date2" placeholder="Date"></div>
+    </div>
+  </div>
+  <div class="sign" style="margin-top:6px">
+    <div>Sebastian Holowkiewicz, Advantage Tennis</div>
+    <div>Alastair Banwell</div>
+  </div>
+  <p style="font-size:.84rem;color:var(--faint);margin-top:16px">Typing your name above counts as your signature. Press <b>Print or save as PDF</b> and send it back, or just reply to my email saying you are happy and I will treat that as agreed.</p>
+</section>
+
+<footer>
+  Alastair Banwell &nbsp;&middot;&nbsp; hello@alastairbanwell.com &nbsp;&middot;&nbsp; alastairbanwell.com<br>
+  This proposal is valid for 30 days from the date above.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'seb-proposal-v1';
+  var fields = [].slice.call(document.querySelectorAll('.f'));
+
+  function grow(el){
+    if (el.tagName !== 'TEXTAREA') return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
+  }
+
+  /* bring back anything typed previously on this machine */
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+  fields.forEach(function(el){
+    if (saved[el.id] != null) el.value = saved[el.id];
+    grow(el);
+  });
+
+  var status = document.getElementById('st');
+  var t;
+  function save(){
+    var out = {};
+    fields.forEach(function(el){ if (el.value) out[el.id] = el.value; });
+    try {
+      localStorage.setItem(KEY, JSON.stringify(out));
+      if (status) {
+        status.textContent = 'Saved';
+        clearTimeout(t);
+        t = setTimeout(function(){ status.textContent = 'Saves as you type'; }, 1400);
+      }
+    } catch(e){
+      if (status) status.textContent = 'Could not save on this device, use Print to keep a copy';
+    }
+  }
+
+  fields.forEach(function(el){
+    el.addEventListener('input', function(){ grow(el); save(); });
+  });
+
+  var p = document.getElementById('pdf');
+  if (p) p.addEventListener('click', function(){ window.print(); });
+
+  var c = document.getElementById('clear');
+  if (c) c.addEventListener('click', function(){
+    if (!confirm('Clear everything you have typed on this page?')) return;
+    fields.forEach(function(el){ el.value = ''; grow(el); });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    if (status) status.textContent = 'Cleared';
+  });
+
+})();
+</script>
+</body>
+</html>
