@@ -135,7 +135,7 @@
 <section class="content-section on-dark">
   <div class="content-section-inner snug">
     <div class="content-eyebrow">Phase 1 · The Foundation</div>
-    <h2>Website Build, from $650</h2>
+    <h2>Website Build, from <span data-usd="650">$650</span></h2>
     <p class="lede">Not an expense: a capital investment in a permanent digital asset you own outright from day one, structured in two clean payments: deposit to start, balance on completion.</p>
 
     <div class="pricing-anchor-card">
@@ -170,7 +170,7 @@
           <span class="detail-toggle">+</span>
         </summary>
         <div class="detail-body">
-          <p>Ongoing SEO, social media, ad management, and content updates are separate, that's the retainer below, and it's optional. A larger scope (e-commerce, bookings with payment processing, multi-location setups) is quoted individually on the call, since "from $650" is the honest starting point for a standard single-location build, not every possible scope.</p>
+          <p>Ongoing SEO, social media, ad management, and content updates are separate, that's the retainer below, and it's optional. A larger scope (e-commerce, bookings with payment processing, multi-location setups) is quoted individually on the call, since "from <span data-usd="650">$650</span>" is the honest starting point for a standard single-location build, not every possible scope.</p>
         </div>
       </details>
     </div>
@@ -192,7 +192,7 @@
             <span class="service-card-name">SEO</span>
             <span class="service-check" aria-hidden="true"></span>
           </div>
-          <div class="service-card-price">$1,000<span class="service-price-unit">/mo</span></div>
+          <div class="service-card-price"><span data-usd="1000">$1,000</span><span class="service-price-unit">/mo</span></div>
           <ul class="service-card-list">
             <li>Technical site audit to fix indexation errors and broken internal links</li>
             <li>Core Web Vitals optimization focused on mobile speed and asset compression</li>
@@ -205,7 +205,7 @@
             <span class="service-card-name">Social Media</span>
             <span class="service-check" aria-hidden="true"></span>
           </div>
-          <div class="service-card-price">$1,000<span class="service-price-unit">/mo</span></div>
+          <div class="service-card-price"><span data-usd="1000">$1,000</span><span class="service-price-unit">/mo</span></div>
           <ul class="service-card-list">
             <li>Regular, platform-tailored posting featuring real project work, cadence set around what's actually converting</li>
             <li>Active community engagement, comment replies and DM monitoring</li>
@@ -218,7 +218,7 @@
             <span class="service-card-name">Ads</span>
             <span class="service-check" aria-hidden="true"></span>
           </div>
-          <div class="service-card-price">$1,000<span class="service-price-unit">/mo</span></div>
+          <div class="service-card-price"><span data-usd="1000">$1,000</span><span class="service-price-unit">/mo</span></div>
           <ul class="service-card-list">
             <li>Continuous creative testing, swapping hooks, angles, and visual proof points</li>
             <li>Weekly budget reallocation away from fatigued placements into winning segments</li>
@@ -231,7 +231,7 @@
             <span class="service-card-name">Website Updates</span>
             <span class="service-check" aria-hidden="true"></span>
           </div>
-          <div class="service-card-price">$500<span class="service-price-unit">/mo</span></div>
+          <div class="service-card-price"><span data-usd="500">$500</span><span class="service-price-unit">/mo</span></div>
           <ul class="service-card-list">
             <li>Weekly or bi-weekly content swaps, new photos, updated copy, fresh team bios</li>
             <li>Continuous addition of new client proof, reviews, and project galleries</li>
@@ -247,7 +247,7 @@
           </div>
           <div class="service-picker-total in-sidebar">
             <div class="service-picker-total-label" id="service-total-label">Select your services</div>
-            <div class="service-picker-total-value" id="service-total-wrap"><span id="service-total-value">$0</span><span class="service-price-unit">/mo</span></div>
+            <div class="service-picker-total-value" id="service-total-wrap"><span id="service-total-value"><span data-usd="0">$0</span></span><span class="service-price-unit">/mo</span></div>
             <div class="service-comparison" id="service-comparison">
               <span class="service-comparison-was" id="service-comparison-was"></span>
               <span class="service-comparison-save" id="service-comparison-save"></span>
@@ -256,7 +256,7 @@
         </div>
       </aside>
       </div>
-      <p class="service-picker-note" style="margin-top:24px;">2 services: 10% off. 3 services: 20% off. All four: a flat $2,500/mo bundle.</p>
+      <p class="service-picker-note" style="margin-top:24px;">2 services: 10% off. 3 services: 20% off. All four: a flat <span data-usd="2500">$2,500</span>/mo bundle.</p>
     </div>
 
     <p class="body-copy" style="margin-top:40px; font-family:var(--font-head); font-size:1.05rem;">Website Build = the revenue vehicle. Growth Retainer = the fuel and the co-pilot ensuring every mile yields a return.</p>
@@ -396,7 +396,7 @@
     const wasEl = document.getElementById('service-comparison-was');
     const saveEl = document.getElementById('service-comparison-save');
     const selectedList = document.getElementById('service-selected-list');
-    const fmt = n => '$' + n.toLocaleString('en-US');
+    const fmt = n => (window.abdPrice ? window.abdPrice(n) : '$' + n.toLocaleString('en-US'));
 
     function update() {
       const checked = Array.from(checkboxes).filter(cb => cb.checked);
@@ -454,9 +454,11 @@
           card.classList.add('flash');
         }
         update();
+    window.abdRepaint = update;
       });
     });
     update();
+    window.abdRepaint = update;
   })();
 </script>
 
@@ -480,6 +482,129 @@
     links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
   })();
 </script>
+
+
+<script>
+/* ------------------------------------------------------------------
+   CURRENCY. Prices are authored in USD and converted live.
+   Default is chosen from the browser's own timezone, which needs no
+   API key and no permission prompt. A switcher is always present so
+   a wrong guess is never a trap.
+   Rates: open.er-api.com, free, keyless, cached 12 hours.
+   ------------------------------------------------------------------ */
+(function () {
+  var KEY = 'abd-cur', RKEY = 'abd-rates';
+  var CUR = {
+    USD: { sym: '$', round: 1 },
+    GBP: { sym: '\u00A3', round: 5 },
+    ZAR: { sym: 'R', round: 50 }
+  };
+  var FALLBACK = { GBP: 0.7565, ZAR: 16.64 };
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  function guess() {
+    var saved = read(KEY);
+    if (saved && CUR[saved]) return saved;
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (tz === 'Africa/Johannesburg') return 'ZAR';
+    if (tz === 'Europe/London' || tz === 'Europe/Belfast') return 'GBP';
+    return 'USD';
+  }
+
+  var rates = FALLBACK;
+  var current = guess();
+
+  function fmt(usd) {
+    if (!usd) return CUR[current].sym + '0';
+    var v = current === 'USD' ? usd : usd * (rates[current] || FALLBACK[current]);
+    var r = CUR[current].round;
+    if (r > 1) v = Math.round(v / r) * r;
+    else v = Math.round(v);
+    return CUR[current].sym + v.toLocaleString('en-US');
+  }
+  window.abdPrice = fmt;
+  window.abdCurrency = function () { return current; };
+
+  function paint() {
+    document.querySelectorAll('[data-usd]').forEach(function (el) {
+      var n = parseFloat(el.getAttribute('data-usd'));
+      if (!isNaN(n)) el.textContent = fmt(n);
+    });
+    document.querySelectorAll('[data-cur-btn]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-cur-btn') === current ? 'true' : 'false');
+    });
+    if (typeof window.abdRepaint === 'function') window.abdRepaint();
+  }
+
+  function setCur(c) { current = c; store(KEY, c); paint(); }
+
+  function buildSwitcher() {
+    var first = document.querySelector('[data-usd]');
+    if (!first) return;
+    var host = first.closest('section') || document.body;
+    var bar = document.createElement('div');
+    bar.className = 'abd-cur-bar';
+    bar.innerHTML = '<span class="abd-cur-label">Prices in</span>' +
+      ['USD', 'GBP', 'ZAR'].map(function (c) {
+        return '<button type="button" data-cur-btn="' + c + '" class="abd-cur-btn">' +
+          CUR[c].sym + ' ' + c + '</button>';
+      }).join('');
+    host.insertBefore(bar, host.firstChild);
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-cur-btn]');
+      if (b) setCur(b.getAttribute('data-cur-btn'));
+    });
+  }
+
+  function loadRates() {
+    var cached = read(RKEY);
+    if (cached) {
+      try {
+        var c = JSON.parse(cached);
+        if (c.t && (Date.now() - c.t) < 43200000 && c.r) { rates = c.r; paint(); return; }
+      } catch (e) {}
+    }
+    fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.rates || !j.rates.ZAR) return;
+        rates = { GBP: j.rates.GBP, ZAR: j.rates.ZAR };
+        store(RKEY, JSON.stringify({ t: Date.now(), r: rates }));
+        paint();
+      })
+      .catch(function () { /* fallback rates already in place */ });
+  }
+
+  function init() { buildSwitcher(); paint(); loadRates(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+<style>
+  .abd-cur-bar {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin: 0 0 26px; font-family: var(--font-body, inherit);
+  }
+  .abd-cur-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+                   color: var(--dtext-faint, #8a8a8a); margin-right: 2px; }
+  .abd-cur-btn {
+    font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
+    padding: 6px 13px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.16); background: transparent;
+    color: var(--dtext-soft, #b9b9b9);
+    transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+  }
+  .abd-cur-btn[aria-pressed="true"] {
+    background: #3B82F6; border-color: #3B82F6; color: #fff;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .abd-cur-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
+    .abd-cur-btn[aria-pressed="true"]:hover { color: #fff; }
+  }
+</style>
 
 </body>
 </html>
