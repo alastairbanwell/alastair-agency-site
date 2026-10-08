@@ -589,20 +589,20 @@
     margin: 0 0 26px; font-family: var(--font-body, inherit);
   }
   .abd-cur-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-                   color: var(--dtext-faint, #8a8a8a); margin-right: 2px; }
+                   color: #8A8F98; margin-right: 2px; }
   .abd-cur-btn {
     font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
     padding: 6px 13px; border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.16); background: transparent;
-    color: var(--dtext-soft, #b9b9b9);
+    border: 1px solid rgba(128,135,148,0.38); background: transparent;
+    color: #6B7280;
     transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
   }
   .abd-cur-btn[aria-pressed="true"] {
     background: #3B82F6; border-color: #3B82F6; color: #fff;
   }
   @media (hover: hover) and (pointer: fine) {
-    .abd-cur-btn:hover { border-color: rgba(255,255,255,0.4); color: #fff; }
-    .abd-cur-btn[aria-pressed="true"]:hover { color: #fff; }
+    .abd-cur-btn:hover { border-color: #3B82F6; color: #3B82F6; background: rgba(59,130,246,0.08); }
+    .abd-cur-btn[aria-pressed="true"]:hover { background: #2F6FE0; border-color: #2F6FE0; color: #fff; }
   }
 </style>
 
