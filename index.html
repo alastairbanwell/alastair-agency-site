@@ -1070,6 +1070,13 @@
     }
   }
 </style>
+<style>
+  /* looping animations rest when their section is off screen or the tab is hidden */
+  .is-offscreen .hero-scroll-cue-track::after, .is-offscreen .retainer-line,
+  .is-offscreen .trace-node-status, .is-offscreen .trace-live-dot,
+  .tab-hidden .hero-scroll-cue-track::after, .tab-hidden .retainer-line,
+  .tab-hidden .trace-node-status, .tab-hidden .trace-live-dot { animation-play-state: paused; }
+</style>
 </head>
 <body>
 
@@ -1114,7 +1121,7 @@
   </div>
   <div class="journey">
     <div class="journey-anchor">
-      <video class="journey-anchor-video" src="/agency-assets/blueprint-sketch.mp4" autoplay muted loop playsinline preload="none"></video>
+      <video class="journey-anchor-video" src="/agency-assets/blueprint-sketch.mp4" data-lazy-play muted loop playsinline preload="none"></video>
       <div class="journey-anchor-copy">
         <div class="journey-kicker">Phase 1</div>
         <div class="journey-anchor-title">The Anchor</div>
@@ -1313,7 +1320,7 @@
       </div>
       <div class="industry-entry industry-entry-proof">
         <div class="industry-entry-proof-media">
-          <video class="industry-entry-bg-video" src="/agency-assets/banwell-homes-scroll.mp4" autoplay muted loop playsinline preload="none"></video>
+          <video class="industry-entry-bg-video" src="/agency-assets/banwell-homes-scroll.mp4" data-lazy-play muted loop playsinline preload="none"></video>
           <div class="industry-entry-proof-overlay">
             <div class="industry-entry-name">Home Services &amp; Trades</div>
             <p class="industry-entry-desc">When something breaks at home, people search Google, not a phone book. Whoever ranks and looks instantly trustworthy gets the call.</p>
@@ -1323,7 +1330,7 @@
       </div>
       <div class="industry-entry industry-entry-proof">
         <div class="industry-entry-proof-media">
-          <video class="industry-entry-bg-video" src="/agency-assets/abs-portfolio-scroll.mp4" autoplay muted loop playsinline preload="none"></video>
+          <video class="industry-entry-bg-video" src="/agency-assets/abs-portfolio-scroll.mp4" data-lazy-play muted loop playsinline preload="none"></video>
           <div class="industry-entry-proof-overlay">
             <div class="industry-entry-name">Local Retail</div>
             <p class="industry-entry-desc">Foot traffic starts with "is it worth the drive?" Your digital shelf space has to answer that convincingly before someone spends gas money to visit.</p>
@@ -1906,39 +1913,59 @@
 
 </script>
 
-<!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<!-- Google Calendar Appointment Scheduling begin.
+     Loaded on the visitor's first interaction rather than at page load: the
+     script and its third party cookie were the heaviest thing on first paint.
+     A click before it is ready falls back to opening the booking page in a new
+     tab, which is what mobile has always done. -->
 <div id="gcal-booking-btn" style="position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none;"></div>
 <script>
   window.__gcalTriggerBtn = null;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0kla4ZO3uk6fs4sW6GkNcjuTqTyyOzmBTzuQ-GY3KOAH6-7Punj-BKZ5S3oEN5h3kmWybwyvUE?gv=true',
-      color: '#039BE5',
-      label: 'Book an appointment',
-      target: document.getElementById('gcal-booking-btn'),
-    });
-    setInterval(function () {
-      var candidates = document.querySelectorAll('button, a');
-      for (var i = 0; i < candidates.length; i++) {
-        if (candidates[i].textContent.trim() === 'Book an appointment') {
-          candidates[i].style.setProperty('display', 'none', 'important');
-          window.__gcalTriggerBtn = candidates[i];
+  var GCAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0kla4ZO3uk6fs4sW6GkNcjuTqTyyOzmBTzuQ-GY3KOAH6-7Punj-BKZ5S3oEN5h3kmWybwyvUE?gv=true';
+  var gcalRequested = false;
+  function loadGcal() {
+    if (gcalRequested) return;
+    gcalRequested = true;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
+    document.head.appendChild(css);
+    var js = document.createElement('script');
+    js.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+    js.async = true;
+    js.onload = function () {
+      calendar.schedulingButton.load({
+        url: GCAL_URL,
+        color: '#039BE5',
+        label: 'Book an appointment',
+        target: document.getElementById('gcal-booking-btn'),
+      });
+      /* find Google's button once, hide it, keep a handle, then stop looking */
+      var tries = 0;
+      var finder = setInterval(function () {
+        tries++;
+        var candidates = document.querySelectorAll('button, a');
+        for (var i = 0; i < candidates.length; i++) {
+          if (candidates[i].textContent.trim() === 'Book an appointment') {
+            candidates[i].style.setProperty('display', 'none', 'important');
+            window.__gcalTriggerBtn = candidates[i];
+          }
         }
-      }
-    }, 300);
-  });
-  function toggleFaq(qEl) {
-    var row = qEl.closest('.faq-row-ed');
-    if (row) row.classList.toggle('open');
+        if (window.__gcalTriggerBtn || tries >= 40) clearInterval(finder);
+      }, 300);
+    };
+    document.head.appendChild(js);
   }
+  ['pointerdown', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(function (ev) {
+    window.addEventListener(ev, loadGcal, { once: true, passive: true });
+  });
   function openBookingModal() {
     var isMobile = window.innerWidth <= 860;
     if (!isMobile && window.__gcalTriggerBtn) {
       window.__gcalTriggerBtn.click();
     } else {
-      window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ0kla4ZO3uk6fs4sW6GkNcjuTqTyyOzmBTzuQ-GY3KOAH6-7Punj-BKZ5S3oEN5h3kmWybwyvUE?gv=true', '_blank');
+      loadGcal();
+      window.open(GCAL_URL, '_blank');
     }
   }
 </script>
@@ -2088,5 +2115,42 @@
   }
 </style>
 
+<script>
+  /* Performance: background videos play only while on screen, and looping
+     CSS animations pause in any section that is off screen or when the tab
+     is hidden. Nothing changes visually, the page just stops working when
+     nobody is looking. */
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window)) return;
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) {
+          if (reduce) { if (v.preload !== 'metadata') v.preload = 'metadata'; return; }
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    document.querySelectorAll('video[data-lazy-play]').forEach(function (v) { vio.observe(v); });
+
+    var sio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle('is-offscreen', !e.isIntersecting); });
+    });
+    /* only the sections that actually hold a looping animation */
+    ['.hero', '#process', '.why-retainers-graph'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (!el) return;
+      sio.observe(el.closest('section') || el);
+    });
+
+    document.addEventListener('visibilitychange', function () {
+      document.documentElement.classList.toggle('tab-hidden', document.hidden);
+    });
+  })();
+</script>
 </body>
 </html>
