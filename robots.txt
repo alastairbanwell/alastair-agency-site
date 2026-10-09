@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /advantage/
+Disallow: /jb/
 
 Sitemap: https://www.alastairbanwell.com/sitemap.xml

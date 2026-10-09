@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Proposal for JB Football Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F5F1; --bg-alt:#EFEBE3; --ink:#15130F; --obsidian:#0A0A0A;
+  --white:#FFFFFF; --line:#DAD5CB; --soft:#5A554D; --faint:#8A857C;
+  --good:#1F6F43; --warn:#9A6212;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;padding:28px 22px 70px}
+.w{max-width:900px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.14;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.7rem)}
+h2{font-size:clamp(1.3rem,2.4vw,1.72rem);margin-bottom:10px}
+h3{font-size:1.06rem;font-weight:700}
+p{margin-top:10px}
+a{color:inherit}
+
+header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:30px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.who{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+header .meta{text-align:right;font-size:.85rem;color:var(--soft)}
+
+section{margin-bottom:40px}
+.lead{font-size:1.06rem;color:var(--soft);max-width:66ch}
+.kicker{display:block;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:8px}
+
+.box{background:var(--white);border:1px solid var(--line);padding:22px 24px;margin-top:18px}
+.box.dark{background:var(--obsidian);color:#fff;border-color:var(--obsidian)}
+.box.dark .lab{color:#9A958C}
+.box.flag{background:#FFF8E8;border-color:#E8D5A8}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:200px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline}
+@media(max-width:620px){.row{grid-template-columns:1fr;gap:2px}}
+.lab{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+
+ul{margin:10px 0 0 0;padding-left:0;list-style:none}
+ul li{position:relative;padding-left:18px;margin-top:7px}
+ul li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--ink)}
+ul.tick li::before{background:var(--good)}
+ul.cross li::before{background:var(--warn)}
+
+.price{font-family:var(--serif);font-size:2.1rem;font-weight:700;line-height:1}
+.price small{font-family:var(--sans);font-size:.8rem;font-weight:600;color:var(--faint);letter-spacing:.06em}
+.was{color:var(--faint);text-decoration:line-through;font-size:1.05rem;font-family:var(--sans);font-weight:500;margin-left:10px}
+
+.svc{border:1px solid var(--line);background:var(--white);padding:22px 24px;margin-top:16px}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:680px){.svc-grid{grid-template-columns:1fr;gap:14px}}
+.svc h4{font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:4px}
+.svc h4.y{color:var(--good)}
+.svc h4.n{color:var(--warn)}
+
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:.95rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);
+  border-bottom:1px solid var(--ink)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--bg-alt);font-weight:700}
+
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:26px}
+@media(max-width:620px){.sign{grid-template-columns:1fr}}
+.sign div{border-top:1px solid var(--ink);padding-top:9px;font-size:.8rem;color:var(--faint)}
+.sigline{height:46px}
+
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:16px;font-size:.82rem;color:var(--faint)}
+
+/* ---------- fillable fields ---------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  background:var(--ink);color:#fff;padding:11px 14px;margin:0 0 24px;
+}
+.bar button{
+  font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:9px 15px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer;
+  transition:background-color .2s ease,color .2s ease;
+}
+.bar button:hover{background:#fff;color:var(--ink)}
+.bar button.pri{background:#fff;color:var(--ink);border-color:#fff}
+.bar button.pri:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.bar .st{margin-left:auto;font-size:.76rem;color:rgba(255,255,255,.65)}
+
+textarea.f,input.f{
+  font-family:inherit;font-size:1rem;line-height:1.55;color:var(--ink);
+  width:100%;background:#FFFEFB;border:1px solid var(--line);border-bottom:2px solid var(--line);
+  padding:9px 11px;resize:none;overflow:hidden;display:block;
+  transition:border-color .2s ease,background-color .2s ease;
+}
+textarea.f:focus,input.f:focus{outline:none;border-color:var(--ink);background:#fff}
+textarea.f::placeholder,input.f::placeholder{color:#B8B2A7}
+.ansbox{margin:10px 0 0 40px}
+.ansbox.flush{margin-left:0}
+
+@media print{
+  .bar{display:none}
+  textarea.f,input.f{border:0;border-bottom:1px solid #999;background:transparent;padding:2px 0;
+    font-size:11pt;color:#000}
+}
+
+@media print{body{padding:0;background:#fff}.box.dark{background:#fff;color:#000;border:1px solid #000}}
+
+.badge{display:inline-block;background:var(--obsidian);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:4px 9px;margin-left:10px;vertical-align:3px}
+.svc.pop{border:2px solid var(--obsidian)}
+.svc .incl{margin-top:16px;padding:12px 14px;background:var(--bg-alt);font-size:.92rem}
+.svc .incl b{font-weight:700}
+.how{margin-top:14px}
+.how p{margin-top:8px}
+
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="bar">
+  <button id="pdf" class="pri">Print or save as PDF</button>
+  <button id="clear">Clear</button>
+  <span class="st" id="st">Saves as you type</span>
+</div>
+
+<header>
+  <div>
+    <span class="who">Alastair Banwell</span>
+    <h1>Proposal &amp; Agreement</h1>
+  </div>
+  <div class="meta">
+    Prepared for <b>Jonathan Brown</b><br>
+    JB Football Coaching, Edinburgh<br>
+    9 October 2026
+  </div>
+</header>
+
+<section>
+  <p class="lead">Following our call. This sets out exactly what I am building, what it costs, what you own at the end, and what I can do for you afterwards. Part one is the website. Part two is optional, and the website works perfectly well without it.</p>
+</section>
+
+<section>
+  <span class="kicker">Part one</span>
+  <h2>The website</h2>
+  <p class="lead">A custom built site for JB Football Coaching. Not a template, not a page builder subscription. Designed and written around how a parent actually finds, judges and books a football coach, with your 1:1 sessions, small groups, camps and Team United each given proper space.</p>
+
+  <div class="rows">
+    <div class="row"><div class="lab">Price</div><div><span class="price">&pound;500</span> <span class="was">&pound;800 standard</span></div></div>
+    <div class="row"><div class="lab">Payment</div><div><b>&pound;200</b> deposit to start and <b>&pound;300</b> on completion, before the site goes live.</div></div>
+    <div class="row"><div class="lab">Ownership</div><div>Yours outright from the day it launches. The code, the content and the domain are all in your name. You are not renting anything from me.</div></div>
+    <div class="row"><div class="lab">Hosting</div><div><b>Included, at no cost, for as long as you want it.</b> There is no monthly fee and no subscription needed to keep the site online. This is not a trial rate that changes later.</div></div>
+    <div class="row"><div class="lab">Domain</div><div>Roughly &pound;10 to &pound;15 a year, paid by you directly to the registrar and registered in your name. I never hold your domain.</div></div>
+    <div class="row"><div class="lab">Bookings</div><div>Your bookings stay on <b>Pembee</b>, exactly as they work now. The site sends people straight to the right Pembee page, so nothing about how you take bookings has to change.</div></div>
+    <div class="row"><div class="lab">Timeline</div><div><b>Within 30 days</b> of your answers and photos coming back to me. That is a comfortable outer limit rather than a deadline, and in practice it is usually well before that.</div></div>
+  </div>
+
+  <div class="box">
+    <h3>What is included</h3>
+    <ul class="tick">
+      <li>Full custom design and build, with all the written copy done for you</li>
+      <li>Built mobile first, because that is where almost every parent will see it</li>
+      <li>Your 1:1 sessions, small groups and camps laid out so a parent understands them in seconds</li>
+      <li>Team United given its own proper space, told in your words</li>
+      <li>Your coaching team and your qualifications presented so a parent understands why they matter</li>
+      <li>Every booking button linked to the right Pembee page</li>
+      <li>On page search setup so you can be found for your own name and your area from day one</li>
+      <li>Google Analytics connected so you can see what is actually happening</li>
+      <li>A proper handover, with everything in accounts that belong to you</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>What is not included at this price</h3>
+    <ul class="cross">
+      <li>Taking card payments inside the site itself. Pembee already does that for you, so you should not need it.</li>
+      <li>Ongoing marketing. That is part two below, and it is entirely optional.</li>
+      <li>Photography. I will use what you send me.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>Changes after launch</h3>
+    <p>If you do not take a monthly plan, changes are simple. A new price, a new session, a new camp date, a photo swap: you send it to me, I quote it, and you always have the number before I start. There is no retainer required and no minimum.</p>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">Part two, optional</span>
+  <h2>Ongoing marketing</h2>
+  <p class="lead">The website answers people who already know your name. These are the four things that bring in the people who do not, and keep them coming. You can take any one on its own, or combine them, and the more you combine the less each one costs.</p>
+  <p class="lead" style="margin-top:12px"><b>None of this is required. The site is yours either way.</b> Hosting stays free whatever you choose, and every monthly plan also includes keeping the site secure, fast and maintained.</p>
+
+  <div class="svc pop">
+    <div class="svc-top">
+      <div><h3>Search &amp; SEO<span class="badge">Most popular</span></h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">Getting found by parents who do not know your name yet.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    <div class="how"><p>When a parent in Edinburgh wants a coach, they do one of three things. They search Google, they look at the map, or more and more often they ask an AI assistant like ChatGPT or Google's AI answer box "who is a good football coach near me". SEO is the work that puts you in all three places, and keeps you there.</p></div>
+    <div class="svc-grid" style="margin-top:16px">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li><b>Google search:</b> showing up for searches like "football coaching Edinburgh", "1 to 1 football coach near me" and "kids football camps Edinburgh"</li>
+          <li><b>Google Maps:</b> your Google Business Profile set up properly and kept current, which is what decides who appears in the map results</li>
+          <li><b>AI search:</b> the structured information and well written pages that ChatGPT, Google AI answers and similar tools read when they recommend a coach. This is becoming one of the main ways people choose</li>
+          <li><b>Two new pages every month</b>, each targeting something parents actually search for, such as a session type or an area you coach in</li>
+          <li>Technical fixes, page speed and indexing kept right, so nothing quietly stops Google listing you</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>The site still works and still converts anyone who already has your name</li>
+          <li>But you will mostly be found by people who were already going to find you</li>
+          <li>Whoever does put the work in will take the "near me" searches in your area</li>
+          <li><b>Honest caveat:</b> this builds over time. Expect three to six months before it really shows. If you want bookings next week, ads are the faster lever.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="incl"><b>Why it is the most popular:</b> it is the one that keeps working while you coach. It also includes the site's hosting, security and technical upkeep, so for most coaches it is the only monthly plan they need.</div>
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Social media</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">Consistent posting, managed for you.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    <div class="how"><p>You already have social media and real stories to tell, from Team United to having top flight players coaching with you. This is for when you know it deserves posting regularly, but coaching comes first and it ends up going quiet.</p></div>
+    <div class="svc-grid" style="margin-top:16px">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li>A proper monthly content plan instead of posting when you remember</li>
+          <li>Posts made from your actual sessions, edited and scheduled for each platform</li>
+          <li>Comments and messages watched and replied to</li>
+          <li>Everything pointing back to your site and your Pembee bookings</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>You keep posting yourself, which costs nothing</li>
+          <li>The honest risk is simply that it goes quiet when you get busy</li>
+          <li><b>Honest caveat:</b> your own phone footage from sessions often performs better than anything polished. This is worth paying for only if you know you will not post consistently otherwise.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Paid ads</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">The fastest way to fill empty slots and camps.</p></div>
+      <div style="text-align:right"><span class="price">&pound;650</span><small> / month</small><br><span class="was">&pound;750</span></div>
+    </div>
+    
+    <div class="svc-grid" style="margin-top:0px">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li>Enquiries within days rather than months</li>
+          <li>Continuous testing of which message actually makes a parent click</li>
+          <li>Budget moved every week away from what is not working and into what is</li>
+          <li>Ideal before camps and new blocks, when you have a set number of places to fill</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>Growth comes from word of mouth and search, which is slower but free</li>
+          <li><b>Honest caveat:</b> the ad spend itself is on top of the fee and goes to Meta or Google, not to me. Ads make sense when you have slots you cannot fill, not before.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="svc">
+    <div class="svc-top">
+      <div><h3>Website updates &amp; content</h3><p style="margin-top:4px;color:var(--soft);font-size:.92rem">The site never goes stale, and you never have to ask.</p></div>
+      <div style="text-align:right"><span class="price">&pound;300</span><small> / month</small><br><span class="was">&pound;375</span></div>
+    </div>
+    
+    <div class="svc-grid" style="margin-top:0px">
+      <div>
+        <h4 class="y">What it gets you</h4>
+        <ul class="tick">
+          <li><b>A written blog post or new page every month</b> on things parents actually search for, such as what age to start, what happens in a first session, or how to choose a camp</li>
+          <li>Those posts are also what Google and AI assistants pick up when answering questions about coaching in your area</li>
+          <li>Photo and copy swaps whenever you want them, no quoting, no waiting</li>
+          <li>Camp dates, prices and timetables kept current</li>
+          <li>New reviews and results added as they come in</li>
+          <li>Security, link and performance maintenance so nothing quietly breaks</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="n">If you skip it</h4>
+        <ul class="cross">
+          <li>You send me changes when you need them and I quote each one, which stays small</li>
+          <li><b>Be honest with yourself about which you are.</b> If all you want is a price change a couple of times a year, paying per change costs you a fraction of this.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+
+  <h3 style="margin-top:30px">Combining them</h3>
+  <table>
+    <thead><tr><th>Combination</th><th class="n">Standard</th><th class="n">Your rate</th></tr></thead>
+    <tbody>
+      <tr><td>Any one service</td><td class="n">&pound;750</td><td class="n">&pound;650 / mo</td></tr>
+      <tr><td>Any two, 10% off</td><td class="n">&pound;1,500</td><td class="n">&pound;1,170 / mo</td></tr>
+      <tr><td>Any three, 20% off</td><td class="n">&pound;2,250</td><td class="n">&pound;1,560 / mo</td></tr>
+      <tr class="hl"><td>All four, flat bundle</td><td class="n">&pound;1,875</td><td class="n">&pound;1,600 / mo</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.88rem;color:var(--faint);margin-top:10px">Website updates on its own is &pound;300 a month. No lock in. You can start, stop or change the combination month to month. Rates above are held for you for 60 days.</p>
+
+  <div class="box">
+    <h3>Which would you like?</h3>
+    <p style="color:var(--soft)">Leave this blank if you only want the website for now. That is a completely normal choice.</p>
+    <div class="ansbox flush" style="margin-top:12px"><textarea class="f" id="p_services" rows="2" placeholder="For example: website only, or website plus SEO"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <span class="kicker">Part three</span>
+  <h2>What happens next</h2>
+  <div class="rows">
+    <div class="row"><div class="lab">1. Questionnaire</div><div>I have sent a separate set of questions. The more of it you fill in, the less back and forth there is later.</div></div>
+    <div class="row"><div class="lab">2. Your material</div><div>Photos of you, Siobhan and Lucy, session and camp photos, your logo if you have one, your current prices and your Pembee links.</div></div>
+    <div class="row"><div class="lab">3. Deposit</div><div>&pound;200 to start. Payment details sent separately.</div></div>
+    <div class="row"><div class="lab">4. Build</div><div>I build it and send you a private link to review. You tell me what to change.</div></div>
+    <div class="row"><div class="lab">5. Launch</div><div>&pound;300 balance, domain pointed, site live, everything handed to you in your own accounts.</div></div>
+  </div>
+
+  <div class="box flag">
+    <h3>A note on payment</h3>
+    <p>I will send bank details separately once you confirm. Please do not send anything before you have those details in writing from me.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Agreed</h2>
+  <p class="lead">Website build for JB Football Coaching at &pound;500, reduced from &pound;800, paid as a &pound;200 deposit and a &pound;300 balance on completion. Hosting included at no cost. Domain registered and paid by the client. Site owned outright by the client on launch. Bookings remain on Pembee. No ongoing fees unless a monthly service is chosen above or separately agreed in writing.</p>
+  <div class="sign">
+    <div style="border:0;padding:0">
+      <div class="ansbox flush"><input class="f" id="p_sig1" placeholder="Type your full name"></div>
+      <div class="ansbox flush" style="margin-top:10px"><input class="f" id="p_date1" placeholder="Date"></div>
+    </div>
+    <div style="border:0;padding:0">
+      <div class="ansbox flush"><input class="f" id="p_sig2" placeholder="Alastair Banwell"></div>
+      <div class="ansbox flush" style="margin-top:10px"><input class="f" id="p_date2" placeholder="Date"></div>
+    </div>
+  </div>
+  <div class="sign" style="margin-top:6px">
+    <div>Jonathan Brown, JB Football Coaching</div>
+    <div>Alastair Banwell</div>
+  </div>
+  <p style="font-size:.84rem;color:var(--faint);margin-top:16px">Typing your name above counts as your signature. Press <b>Print or save as PDF</b> and send it back, or just message me on WhatsApp saying you are happy and I will treat that as agreed.</p>
+</section>
+
+<footer>
+  Alastair Banwell &nbsp;&middot;&nbsp; hello@alastairbanwell.com &nbsp;&middot;&nbsp; WhatsApp +27 66 215 1765 &nbsp;&middot;&nbsp; alastairbanwell.com<br>
+  This proposal is valid for 30 days from the date above.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'jb-proposal-v1';
+  var fields = [].slice.call(document.querySelectorAll('.f'));
+
+  function grow(el){
+    if (el.tagName !== 'TEXTAREA') return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
+  }
+
+  /* bring back anything typed previously on this machine */
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+  fields.forEach(function(el){
+    if (saved[el.id] != null) el.value = saved[el.id];
+    grow(el);
+  });
+
+  var status = document.getElementById('st');
+  var t;
+  function save(){
+    var out = {};
+    fields.forEach(function(el){ if (el.value) out[el.id] = el.value; });
+    try {
+      localStorage.setItem(KEY, JSON.stringify(out));
+      if (status) {
+        status.textContent = 'Saved';
+        clearTimeout(t);
+        t = setTimeout(function(){ status.textContent = 'Saves as you type'; }, 1400);
+      }
+    } catch(e){
+      if (status) status.textContent = 'Could not save on this device, use Print to keep a copy';
+    }
+  }
+
+  fields.forEach(function(el){
+    el.addEventListener('input', function(){ grow(el); save(); });
+  });
+
+  var p = document.getElementById('pdf');
+  if (p) p.addEventListener('click', function(){ window.print(); });
+
+  var c = document.getElementById('clear');
+  if (c) c.addEventListener('click', function(){
+    if (!confirm('Clear everything you have typed on this page?')) return;
+    fields.forEach(function(el){ el.value = ''; grow(el); });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    if (status) status.textContent = 'Cleared';
+  });
+
+})();
+</script>
+</body>
+</html>
