@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /advantage/
 Disallow: /jb/
+Disallow: /lazazzi/
 
 Sitemap: https://www.alastairbanwell.com/sitemap.xml

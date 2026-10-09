@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Lazazzi Sport questionnaire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F5F1; --ink:#15130F; --white:#FFFFFF; --line:#DAD5CB;
+  --soft:#5A554D; --faint:#8A857C; --accent:#0A0A0A; --must:#A33A12;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;padding:28px 22px 70px}
+.w{max-width:860px;margin:0 auto}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.14;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.6rem)}
+h2{font-size:1.32rem}
+a{color:inherit}
+
+header{border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:26px}
+.who{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.lead{font-size:1.04rem;color:var(--soft);max-width:68ch;margin-top:12px}
+
+.note{background:#FFF8E8;border:1px solid #E8D5A8;padding:16px 18px;margin:22px 0 30px;font-size:.95rem}
+
+section{margin-bottom:34px;break-inside:avoid}
+.sec-head{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:4px}
+.sec-n{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--faint)}
+
+.q{border-bottom:1px solid var(--line);padding:14px 0}
+.q-t{display:flex;gap:10px;align-items:baseline}
+.q-n{font-size:.78rem;font-weight:700;color:var(--faint);min-width:30px;font-variant-numeric:tabular-nums}
+.q-q{font-weight:600}
+.q-h{font-size:.88rem;color:var(--faint);margin-top:5px;margin-left:40px}
+.must{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--must);border:1px solid var(--must);padding:2px 6px;margin-left:8px;vertical-align:middle}
+.ans{margin:9px 0 0 40px;border-bottom:1px dotted var(--line);height:26px}
+.ans.tall{height:70px}
+
+
+/* ---------- fillable fields ---------- */
+.bar{
+  position:sticky;top:0;z-index:50;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  background:var(--ink);color:#fff;padding:11px 14px;margin:0 0 24px;
+}
+.bar button{
+  font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:9px 15px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer;
+  transition:background-color .2s ease,color .2s ease;
+}
+.bar button:hover{background:#fff;color:var(--ink)}
+.bar button.pri{background:#fff;color:var(--ink);border-color:#fff}
+.bar button.pri:hover{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.bar .st{margin-left:auto;font-size:.76rem;color:rgba(255,255,255,.65)}
+
+textarea.f,input.f{
+  font-family:inherit;font-size:1rem;line-height:1.55;color:var(--ink);
+  width:100%;background:#FFFEFB;border:1px solid var(--line);border-bottom:2px solid var(--line);
+  padding:9px 11px;resize:none;overflow:hidden;display:block;
+  transition:border-color .2s ease,background-color .2s ease;
+}
+textarea.f:focus,input.f:focus{outline:none;border-color:var(--ink);background:#fff}
+textarea.f::placeholder,input.f::placeholder{color:#B8B2A7}
+.ansbox{margin:10px 0 0 40px}
+.ansbox.flush{margin-left:0}
+
+@media print{
+  .bar{display:none}
+  textarea.f,input.f{border:0;border-bottom:1px solid #999;background:transparent;padding:2px 0;
+    font-size:11pt;color:#000}
+}
+
+@media print{
+  body{padding:0;background:#fff;font-size:11pt}
+  .note{background:#fff}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="bar">
+  <button id="wa" class="pri">Send to Alastair on WhatsApp</button>
+  <button id="copy">Copy my answers</button>
+  <button id="pdf">Print or save as PDF</button>
+  <button id="clear">Clear</button>
+  <span class="st" id="st">Saves as you type</span>
+</div>
+
+<header>
+  <span class="who">Alastair Banwell</span>
+  <h1>Lazazzi Sport, project questionnaire</h1>
+  <p class="lead">Everything I need to build the site. It looks long because I would rather ask once than message you eleven times while you are on the field. Skip anything that does not apply, and answer in note form, full sentences are not needed.</p>
+</header>
+
+<div class="note">
+  <b>Type straight into this page.</b> It saves as you go on your own device, so you can close it and come back. When you are done press <b>Send to Alastair on WhatsApp</b>. That copies all your answers and opens a chat with me, so you just paste and send. You can also use <b>Copy my answers</b> and paste them into an email, or use <b>Print or save as PDF</b> if you would rather send a file. Anything marked <span class="must">needed to start</span> holds the build up, everything else can follow.
+</div>
+
+<!-- 1 -->
+<section>
+  <div class="sec-head"><span class="sec-n">01</span><h2>The basics</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">1</span><span class="q-q">Business name exactly as you want it written<span class="must">needed to start</span></span></div>
+    <div class="q-h">Lazazzi Sport, or something else? Pick the one that goes on the site.</div><div class="ansbox"><textarea class="f" id="lq1" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">2</span><span class="q-q">Your name as you want it to appear</span></div>
+    <div class="q-h">Keron, Coach Keron, or Keron Lazarus.</div><div class="ansbox"><textarea class="f" id="lq2" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">3</span><span class="q-q">Best phone number for the site</span></div><div class="ansbox"><textarea class="f" id="lq3" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">4</span><span class="q-q">Best email for enquiries<span class="must">needed to start</span></span></div><div class="ansbox"><textarea class="f" id="lq4" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">5</span><span class="q-q">Do you want a WhatsApp or text button?</span></div>
+    <div class="q-h">If yes, which number. For a lot of parents this converts better than email.</div><div class="ansbox"><textarea class="f" id="lq5" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">6</span><span class="q-q">Which city and areas do you train in?<span class="must">needed to start</span></span></div>
+    <div class="q-h">Your city, plus the neighborhoods and nearby towns parents come from. This decides what you get found for on Google.</div><div class="ansbox"><textarea class="f" id="lq6" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="sec-head"><span class="sec-n">02</span><h2>Domain and your current site</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">7</span><span class="q-q">lazazzisport.com: who registered it, and do you have the login?<span class="must">needed to start</span></span></div>
+    <div class="q-h">For example GoDaddy, Namecheap, Squarespace, Wix. If you are not sure, say so and I will help you find out.</div><div class="ansbox"><textarea class="f" id="lq7" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">8</span><span class="q-q">Is there anything on your current site you want kept, or anything you dislike?</span></div><div class="ansbox"><textarea class="f" id="lq8" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">9</span><span class="q-q">Since you saw the mockup, is there anything you would change?</span></div><div class="ansbox"><textarea class="f" id="lq9" rows="2" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="sec-head"><span class="sec-n">03</span><h2>What you sell</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">10</span><span class="q-q">List every type of session and program you run<span class="must">needed to start</span></span></div>
+    <div class="q-h">1:1, packages, group sessions, camps, anything else.</div><div class="ansbox"><textarea class="f" id="lq10" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">11</span><span class="q-q">Price for each one<span class="must">needed to start</span></span></div>
+    <div class="q-h">I have $75 for 1:1, packages at $425 and $800, and $40 for group sessions. Please confirm or correct these, and add anything missing. I will not guess at prices.</div><div class="ansbox"><textarea class="f" id="lq11" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">12</span><span class="q-q">What is included in each package?</span></div>
+    <div class="q-h">Number of sessions, how long they last, anything extra.</div><div class="ansbox"><textarea class="f" id="lq12" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">13</span><span class="q-q">Do you want prices shown publicly, or hidden behind an enquiry?</span></div>
+    <div class="q-h">My view: show them. It filters out people who were never going to book and saves you messages. But it is your call.</div><div class="ansbox"><textarea class="f" id="lq13" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">14</span><span class="q-q">How long is each session, and what group sizes do you cap at?</span></div><div class="ansbox"><textarea class="f" id="lq14" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">15</span><span class="q-q">What ages and levels do you take?</span></div>
+    <div class="q-h">Camps are ages 3 to 12. Is that the same for everything else?</div><div class="ansbox"><textarea class="f" id="lq15" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">16</span><span class="q-q">Current schedule<span class="must">needed to start</span></span></div>
+    <div class="q-h">Days, times and which session runs where. A screenshot is fine.</div><div class="ansbox"><textarea class="f" id="lq16" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">17</span><span class="q-q">Camps: when do they run, and how are they priced?</span></div>
+    <div class="q-h">Dates for the next ones if you have them.</div><div class="ansbox"><textarea class="f" id="lq17" rows="2" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="sec-head"><span class="sec-n">04</span><h2>Locations and policies</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">18</span><span class="q-q">Every field or facility you use, with addresses<span class="must">needed to start</span></span></div><div class="ansbox"><textarea class="f" id="lq18" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">19</span><span class="q-q">Your rainout and bad weather policy<span class="must">needed to start</span></span></div>
+    <div class="q-h">What happens when a session is rained out: rescheduled, credited, refunded? Parents look for this before they book.</div><div class="ansbox"><textarea class="f" id="lq19" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">20</span><span class="q-q">Cancellation and refund policy</span></div>
+    <div class="q-h">If you do not have one yet, say so and I can suggest a simple one.</div><div class="ansbox"><textarea class="f" id="lq20" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="sec-head"><span class="sec-n">05</span><h2>Booking and payment</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">21</span><span class="q-q">Right now, what does a parent have to do to book with you?<span class="must">needed to start</span></span></div>
+    <div class="q-h">Walk me through it exactly as it happens today, including the bits you find annoying.</div><div class="ansbox"><textarea class="f" id="lq21" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">22</span><span class="q-q">Do you use any booking or payment software?</span></div>
+    <div class="q-h">Square, Calendly, TeamSnap, an app, or just messages and Venmo. If you like it, I will point the site at it rather than replace it.</div><div class="ansbox"><textarea class="f" id="lq22" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">23</span><span class="q-q">What should the main button on the site do?</span></div>
+    <div class="q-h">Go to a booking page, open a message, or something else.</div><div class="ansbox"><textarea class="f" id="lq23" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 6 -->
+<section>
+  <div class="sec-head"><span class="sec-n">06</span><h2>You, and why parents choose you</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">24</span><span class="q-q">Your story<span class="must">needed to start</span></span></div>
+    <div class="q-h">How you got into soccer, your playing background, and why you started Lazazzi Sport. This becomes the heart of the coach section, so your own words are best.</div><div class="ansbox"><textarea class="f" id="lq24" rows="4" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">25</span><span class="q-q">Your coaching qualifications, exactly as they should be written<span class="must">needed to start</span></span></div>
+    <div class="q-h">Licenses and courses. Exact wording please, I will not paraphrase a qualification.</div><div class="ansbox"><textarea class="f" id="lq25" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">26</span><span class="q-q">Safety credentials<span class="must">needed to start</span></span></div>
+    <div class="q-h">Background check, SafeSport, CPR and first aid, insurance. Parents of young children look for these first, so they get their own section, but I will only list what you actually hold.</div><div class="ansbox"><textarea class="f" id="lq26" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">27</span><span class="q-q">Anyone else coaching with you?</span></div>
+    <div class="q-h">If yes, their names, roles and a short bio each.</div><div class="ansbox"><textarea class="f" id="lq27" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">28</span><span class="q-q">Why do players stay with you rather than go elsewhere?</span></div>
+    <div class="q-h">Answer honestly rather than in marketing language. This usually becomes the headline.</div><div class="ansbox"><textarea class="f" id="lq28" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">29</span><span class="q-q">Who is your ideal player?</span></div>
+    <div class="q-h">Age, level, ambition. If I write for everyone, the site persuades nobody.</div><div class="ansbox"><textarea class="f" id="lq29" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 7 -->
+<section>
+  <div class="sec-head"><span class="sec-n">07</span><h2>Proof and partners</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">30</span><span class="q-q">Do you have reviews or testimonials?</span></div>
+    <div class="q-h">Screenshots are fine. I only use real ones, I never write fake reviews.</div><div class="ansbox"><textarea class="f" id="lq30" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">31</span><span class="q-q">Any results worth naming?</span></div>
+    <div class="q-h">Players who made travel teams, academies, high school or college programs. Anything factual.</div><div class="ansbox"><textarea class="f" id="lq31" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">32</span><span class="q-q">Partners or sponsors you want shown</span></div>
+    <div class="q-h">Names, and I will collect the logo files with your photos.</div><div class="ansbox"><textarea class="f" id="lq32" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">33</span><span class="q-q">Do you have a Google Business Profile?</span></div>
+    <div class="q-h">If yes, send the link. If not, this is worth setting up and I will tell you how.</div><div class="ansbox"><textarea class="f" id="lq33" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">34</span><span class="q-q">Roughly how many players do you train in a normal week?</span></div><div class="ansbox"><textarea class="f" id="lq34" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 8 -->
+<section>
+  <div class="sec-head"><span class="sec-n">08</span><h2>Photos and video</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">35</span><span class="q-q">What do you have?</span></div>
+    <div class="q-h">Sessions, camps, players, you. Phone photos are completely fine and usually better than stock. I will send you a shared folder to upload originals into.</div><div class="ansbox"><textarea class="f" id="lq35" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">36</span><span class="q-q">Is there a good photo of you specifically?</span></div>
+    <div class="q-h">Parents want to see who is coaching their child. This matters more than any other image on the site.</div><div class="ansbox"><textarea class="f" id="lq36" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">37</span><span class="q-q">Do you have permission to use photos of the children?</span></div>
+    <div class="q-h">Important one. If you are not certain, say so and I will only use shots where faces are not identifiable.</div><div class="ansbox"><textarea class="f" id="lq37" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">38</span><span class="q-q">Do you have a logo?</span></div>
+    <div class="q-h">If yes, I will collect the original file with your photos.</div><div class="ansbox"><textarea class="f" id="lq38" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">39</span><span class="q-q">Any colors you want used, or avoided?</span></div><div class="ansbox"><textarea class="f" id="lq39" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 9 -->
+<section>
+  <div class="sec-head"><span class="sec-n">09</span><h2>Social media</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">40</span><span class="q-q">Every social account you have</span></div>
+    <div class="q-h">Instagram, Facebook, TikTok, YouTube. Paste the full links so I do not link the wrong account.</div><div class="ansbox"><textarea class="f" id="lq40" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">41</span><span class="q-q">Which ones do you actually use, and how often do you post?</span></div><div class="ansbox"><textarea class="f" id="lq41" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">42</span><span class="q-q">Who does the posting now?</span></div><div class="ansbox"><textarea class="f" id="lq42" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">43</span><span class="q-q">What kind of posts get the best reaction?</span></div>
+    <div class="q-h">Session clips, player progress, camps, something else.</div><div class="ansbox"><textarea class="f" id="lq43" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">44</span><span class="q-q">Where do most of your new families come from right now?</span></div>
+    <div class="q-h">Word of mouth, Instagram, Google, a club, school flyers. Be as specific as you can.</div><div class="ansbox"><textarea class="f" id="lq44" rows="2" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">45</span><span class="q-q">Would you like your latest posts shown on the site?</span></div>
+    <div class="q-h">For example your Instagram feed on the homepage, so it always looks current.</div><div class="ansbox"><textarea class="f" id="lq45" rows="1" placeholder="Type here"></textarea></div></div>
+</section>
+
+<!-- 10 -->
+<section>
+  <div class="sec-head"><span class="sec-n">10</span><h2>Goals and admin</h2></div>
+  <div class="q"><div class="q-t"><span class="q-n">46</span><span class="q-q">What should the site achieve for you in the next six months?</span></div>
+    <div class="q-h">More 1:1 clients, full camps, a new program, something else.</div><div class="ansbox"><textarea class="f" id="lq46" rows="3" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">47</span><span class="q-q">How many more players could you take on right now?</span></div>
+    <div class="q-h">So I know whether to push for volume or for higher value packages.</div><div class="ansbox"><textarea class="f" id="lq47" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">48</span><span class="q-q">Are you set up as an LLC, or a sole proprietor?</span></div>
+    <div class="q-h">Needed for the footer.</div><div class="ansbox"><textarea class="f" id="lq48" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">49</span><span class="q-q">Anything coming up I should build around?</span></div>
+    <div class="q-h">A new location, a camp going on sale, a new season.</div><div class="ansbox"><textarea class="f" id="lq49" rows="1" placeholder="Type here"></textarea></div></div>
+  <div class="q"><div class="q-t"><span class="q-n">50</span><span class="q-q">Anything else I have not asked that I should have?</span></div><div class="ansbox"><textarea class="f" id="lq50" rows="3" placeholder="Type here"></textarea></div></div>
+</section>
+
+<div class="note" style="margin-top:36px">
+  <b>That is everything.</b> Answer what you can and send the rest as it comes. The ones marked <span class="must">needed to start</span> are the only ones holding the build up. Anything unclear, just ask.
+</div>
+
+<div style="margin-top:26px;border-top:1px solid var(--line);padding-top:16px;font-size:.84rem;color:var(--faint)">
+  Alastair Banwell &nbsp;&middot;&nbsp; hello@alastairbanwell.com &nbsp;&middot;&nbsp; alastairbanwell.com
+</div>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'lazazzi-questionnaire-v1';
+  var fields = [].slice.call(document.querySelectorAll('.f'));
+
+  function grow(el){
+    if (el.tagName !== 'TEXTAREA') return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
+  }
+
+  /* bring back anything typed previously on this machine */
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+  fields.forEach(function(el){
+    if (saved[el.id] != null) el.value = saved[el.id];
+    grow(el);
+  });
+
+  var status = document.getElementById('st');
+  var t;
+  function save(){
+    var out = {};
+    fields.forEach(function(el){ if (el.value) out[el.id] = el.value; });
+    try {
+      localStorage.setItem(KEY, JSON.stringify(out));
+      if (status) {
+        status.textContent = 'Saved';
+        clearTimeout(t);
+        t = setTimeout(function(){ status.textContent = 'Saves as you type'; }, 1400);
+      }
+    } catch(e){
+      if (status) status.textContent = 'Could not save on this device, use Print to keep a copy';
+    }
+  }
+
+  fields.forEach(function(el){
+    el.addEventListener('input', function(){ grow(el); save(); });
+  });
+
+  var p = document.getElementById('pdf');
+  if (p) p.addEventListener('click', function(){ window.print(); });
+
+  var c = document.getElementById('clear');
+  if (c) c.addEventListener('click', function(){
+    if (!confirm('Clear everything you have typed on this page?')) return;
+    fields.forEach(function(el){ el.value = ''; grow(el); });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    if (status) status.textContent = 'Cleared';
+  });
+
+  var cp = document.getElementById('copy');
+  if (cp) cp.addEventListener('click', function(){
+    var lines = [];
+    document.querySelectorAll('.q').forEach(function(q){
+      var n = q.querySelector('.q-n'), qq = q.querySelector('.q-q'), a = q.querySelector('.f');
+      if (!a || !a.value.trim()) return;
+      var label = (qq ? qq.childNodes[0].textContent.trim() : '');
+      lines.push((n ? n.textContent.trim() + '. ' : '') + label);
+      lines.push(a.value.trim());
+      lines.push('');
+    });
+    var text = lines.length
+      ? 'Lazazzi Sport, questionnaire answers\n\n' + lines.join('\n')
+      : 'Nothing filled in yet.';
+    function done(ok){
+      cp.textContent = ok ? 'Copied' : 'Press Ctrl C';
+      setTimeout(function(){ cp.textContent = 'Copy my answers'; }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ fallback(text, done); });
+    } else { fallback(text, done); }
+  });
+
+  /* Copy everything, then open a WhatsApp chat with Alastair so the answers
+     never get stranded on this device. */
+  var wa = document.getElementById('wa');
+  if (wa) wa.addEventListener('click', function(){
+    var lines = [];
+    document.querySelectorAll('.q').forEach(function(q){
+      var n = q.querySelector('.q-n'), qq = q.querySelector('.q-q'), a = q.querySelector('.f');
+      if (!a || !a.value.trim()) return;
+      var label = (qq ? qq.childNodes[0].textContent.trim() : '');
+      lines.push((n ? n.textContent.trim() + '. ' : '') + label);
+      lines.push(a.value.trim());
+      lines.push('');
+    });
+    if (!lines.length) { wa.textContent = 'Nothing filled in yet'; setTimeout(function(){ wa.textContent = 'Send to Alastair on WhatsApp'; }, 1800); return; }
+    var text = 'Lazazzi Sport, questionnaire answers\n\n' + lines.join('\n');
+    function openChat(){
+      window.open('https://wa.me/27662151765?text=' + encodeURIComponent('Hi Alastair, my questionnaire answers are copied, pasting them below.'), '_blank');
+      wa.textContent = 'Copied, now paste in WhatsApp';
+      setTimeout(function(){ wa.textContent = 'Send to Alastair on WhatsApp'; }, 4000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(openChat, function(){ fallback(text, function(){ openChat(); }); });
+    } else { fallback(text, function(){ openChat(); }); }
+  });
+
+  function fallback(text, done){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+    done(ok);
+  }
+
+})();
+</script>
+</body>
+</html>
