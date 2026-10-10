@@ -699,6 +699,9 @@
   .service-card-price { font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; color: var(--dtext); white-space: nowrap; }
   .service-card:has(.service-checkbox:checked) .service-card-price { color: var(--obsidian); }
   .service-price-unit { font-size: 0.65em; opacity: 0.85; }
+  /* outcome line: what the service changes for the customer, before the detail */
+  .service-card-outcome { font-size: 14px; line-height: 1.5; color: var(--dtext); margin: 12px 0 16px; text-wrap: pretty; }
+  .service-card:has(.service-checkbox:checked) .service-card-outcome { color: var(--obsidian); }
   .service-card-list { list-style: none; padding-top: 16px; border-top: 1px solid var(--line-dark); }
   .service-card:has(.service-checkbox:checked) .service-card-list { border-top-color: rgba(10,10,10,0.15); }
   .service-card-list li {
